@@ -1,0 +1,85 @@
+<div class="block">
+	<div class="block_head">
+		<div class="bheadl"></div>
+		<div class="bheadr"></div>
+
+		<h2><%= page %> Palestra</h2>
+
+	</div>		<!-- .block_head ends -->
+
+	<div class="block_content">
+
+		<p class="breadcrumb"><a href="<%= event_lectures_url %>">Palestra</a> &raquo; <strong><%= page %></strong></p>
+
+		<%= form_for([@event, @lecture]) do |f| %>
+		  <% if @lecture.errors.any? %>
+		    <div class="message errormsg">
+		      <p>Não foi possível salvar devido aos seguintes erros:</p>
+
+		      <% @lecture.errors.full_messages.each do |msg| %>
+		        <p><%= msg %></p>
+		      <% end %>
+		    </div>
+		  <% end %>
+      
+		    <p>
+			    <%= f.label :name, "Nome" %><br />
+		      <%= f.text_field :name, :class => "text small" %>
+		    </p>
+
+		    <p>
+		      <%= f.label :description, "Descrição" %><br />
+		      <%= f.text_area :description, :class => "wysiwyg"  %>
+		    </p>
+
+			  <p>
+		      <%= f.label :initial_date, "Data/Hora Inicial" %><br />
+		      <%= f.datetime_select :initial_date, :order => [:day, :month, :year, :hour, :minute]%>
+		    </p>
+		    
+		    <p>
+		      <%= f.label :end_date, "Data/Hora Final" %><br />
+		      <%= f.datetime_select :end_date, :order => [:day, :month, :year, :hour, :minute]%>
+		    </p>
+			
+			<p>
+			  <%= f.label :category_id, "Categoria" %><br />
+			  <%= f.select :category_id, @categories, :prompt => "Selecione", :class => "styled" %>
+			</p>
+			
+			<p id="new_category_text" style="display:none">
+			  <%= text_field_tag(:lecture_category_text, "",:class => "text small") %>
+			  <input type="button" id="lecture_category_submit" value="cadastrar" />
+			  <input type="button" id="lecture_category_back" value="voltar" />
+			</p>
+			
+			<p>
+			  <%= f.label :place_id, "Local" %><br />
+			  <%= f.select :place_id, @places, :prompt => "Selecione", :class => "styled" %>
+			</p>
+			
+			<p id="new_place_text" style="display:none">
+			  <%= text_field_tag(:lecture_place_text, "",:class => "text small") %>
+			  <input type="button" id="lecture_place_submit" value="cadastrar" />
+			  <input type="button" id="lecture_place_back" value="voltar" />
+			</p>
+			 
+			<p> 
+			  <b>Palestrantes</b><br /> 
+			  <% @speakers.each do |speaker| %>
+			    <%= check_box_tag "lecture[speaker_ids][]", speaker.id, @lecture.speakers.include?(speaker), :class => "checkbox" %>
+			    <%= speaker.name %><br />
+			  <% end %>
+			</p>
+
+		    <p>
+		      <%= f.submit page, :class => "submit small" %>
+		    </p>
+		<% end %>
+
+	</div>		<!-- .block_content ends -->
+
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+
+</div>		<!-- .block ends -->

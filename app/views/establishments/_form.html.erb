@@ -1,0 +1,60 @@
+<div class="block">
+	<div class="block_head">
+		<div class="bheadl"></div>
+		<div class="bheadr"></div>
+
+		<h2><%= page %> Estabelecimento</h2>
+
+	</div>		<!-- .block_head ends -->
+
+	<div class="block_content">
+
+		<p class="breadcrumb"><a href="<%= event_establishments_url %>">Estabelecimento</a> &raquo; <strong><%= page %></strong></p>
+
+		<%= form_for([@event, @establishment])  do |f| %>
+		  <% if @establishment.errors.any? %>
+		    <div class="message errormsg">
+		      <p>Não foi possível salvar devido aos seguintes erros:</p>
+
+		      <% @establishment.errors.full_messages.each do |msg| %>
+		        <p><%= msg %></p>
+		      <% end %>
+		    </div>
+		  <% end %>
+
+		    <p>
+			  <%= f.label :name, "Nome" %><br />
+		      <%= f.text_field :name, :class => "text small" %>
+		    </p>
+		    
+		    <p>
+			  <%= f.label :establishment_type_id, "Tipo" %><br />
+        <%= f.select :establishment_type_id, @establishment_types, :prompt => "Selecione", :class => "styled" %>
+		    </p>
+		    
+		    <p>
+		      <%= f.label :description, "Descrição" %><br />
+		      <%= f.text_area :description, :class => "wysiwyg"  %>
+		    </p>
+
+		    <p>
+			  <%= f.label :telephone, "Telefone" %><br />
+		      <%= f.text_field :telephone, :class => "text small" %>
+		    </p>  
+			  
+			  <p>
+		      <%= f.label :address, "Endereço" %><br />
+		      <%= f.text_field :address, :class => "text small"  %>
+		    </p>
+
+		    <p>
+		      <%= f.submit page, :class => "submit small" %>
+		    </p>
+		<% end %>
+
+	</div>		<!-- .block_content ends -->
+
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+
+</div>		<!-- .block ends -->

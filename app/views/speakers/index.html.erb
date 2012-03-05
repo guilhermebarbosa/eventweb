@@ -1,0 +1,53 @@
+
+<div class="block">
+
+	<div class="block_head">
+		<div class="bheadl"></div>
+		<div class="bheadr"></div>
+		
+		<h2>Palestrante</h2>
+		
+		<ul>
+			<li><a href="<%=new_event_speaker_path(@event)%>">Novo palestrante</a></li>
+		</ul>
+	</div>		<!-- .block_head ends -->
+	
+	<div class="block_content">
+	
+		<form action="" method="post">
+		
+			<table cellpadding="0" cellspacing="0" width="100%" class="sortable">
+			
+				<thead>
+					<tr>
+					    <th>Nome</th>
+					    <th>Email</th>
+					    <th>Twitter</th>
+						<th></th>
+					    <th></th>
+					    <th></th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<% @speakers.each do |speaker| %>
+					  <tr>
+					    <td><%= speaker.name %></td>
+						<td><%= speaker.email %></td>
+					    <td><%= speaker.twitter %></td>
+					    <td><%= link_to 'Visualizar', [@event, speaker] %></td>
+					    <td><%= link_to 'Editar', edit_event_speaker_path(@event, speaker) %></td>
+					    <td><%= link_to 'Excluir', [@event, speaker], :confirm => 'Tem certeza que deseja excluir?', :method => :delete %></td>
+					  </tr>
+					<% end %>
+				</tbody>
+				
+			</table>
+			
+		</form>
+		
+	</div>		<!-- .block_content ends -->
+	
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+</div>		<!-- .block ends -->

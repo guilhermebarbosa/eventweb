@@ -1,0 +1,54 @@
+<div class="block">
+
+	<div class="block_head">
+		<div class="bheadl"></div>
+		<div class="bheadr"></div>
+		
+		<h2>Estabelecimento</h2>
+		
+		<ul>
+			<li><a href="<%=new_event_establishment_path(@event)%>">Novo estabelecimento</a></li>
+		</ul>
+	</div>		<!-- .block_head ends -->
+	
+	<div class="block_content">
+	
+		<form action="" method="post">
+		
+			<table cellpadding="0" cellspacing="0" width="100%" class="sortable">
+			
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Tipo</th>
+						<th>Telefone</th>
+					  <th>Endereço</th>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<% @establishments.each do |establishment| %>
+            <tr>
+              <td><%= establishment.name %></td>
+              <td><%= establishment.establishment_type.name %></td>
+              <td><%= establishment.telephone %></td>
+              <td><%= establishment.address %></td>
+              <td><%= link_to 'Visualizar', [@event, establishment] %></td>
+              <td><%= link_to 'Editar', edit_event_establishment_path(@event, establishment) %></td>
+              <td><%= link_to 'Excluir', [@event, establishment], :confirm => 'Tem certeza que deseja excluir?', :method => :delete %></td>
+            </tr>
+          <% end %>
+				</tbody>
+				
+			</table>
+			
+		</form>
+		
+	</div>		<!-- .block_content ends -->
+	
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+</div>		<!-- .block ends -->

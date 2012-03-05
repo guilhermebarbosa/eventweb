@@ -1,0 +1,81 @@
+<div class="block">
+	<div class="block_head">
+		<div class="bheadl"></div>
+		<div class="bheadr"></div>
+		
+		<h2>Visualizar Evento</h2>
+		
+	</div>		<!-- .block_head ends -->
+	
+	<div class="block_content">
+
+		<p>
+		  <b>Nome:</b>
+		  <%= @event.name %>
+		</p>
+
+    <p>
+		  <b>Telefone:</b>
+		  <%= @event.telephone %>
+		</p>
+
+    <p>
+		  <b>Tipo de evento:</b>
+		  <%= @event.event_type.name %>
+		</p>
+
+		<p>
+		  <b>Descrição:</b>
+		  <%= @event.description.html_safe %>
+		</p>
+
+		<p>
+		  <b>Estado:</b>
+		  <%= @event.state %>
+		</p>
+
+		<p>
+		  <b>Cidade:</b>
+		  <%= @event.city %>
+		</p>
+
+		<p>
+		  <b>Endereço:</b>
+		  <%= @event.address %>
+		</p>
+		
+		<p>
+		  <b>Data de Inicio:</b>
+		  <%=I18n.l @event.start_date %>
+		</p>
+		
+		<p>
+		  <b>Data de encerramento:</b>
+		  <%=I18n.l @event.end_date %>
+		</p>
+		
+		<p>
+		  <b>Hashtag do evento:</b>
+		  <%= @event.twitter_hashtag %>
+		</p>
+		
+		<p>
+		  <b>Mapa:</b>
+		  <% if @event.map_file_name.blank? %>
+		    Nenhuma mapa encontrado
+		  <% else %>
+		    <br>
+		    <%= link_to image_tag(@event.map.url(:thumb)), @event.map.url(:original) %>
+		  <% end %> 
+		</p>
+		
+		<p>
+      <a class="submit small" href="<%=events_url%>">Voltar</a>
+    </p>
+
+	</div>		<!-- .block_content ends -->
+
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+
+</div>		<!-- .block ends -->

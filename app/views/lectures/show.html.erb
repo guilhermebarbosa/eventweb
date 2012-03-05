@@ -1,0 +1,65 @@
+<div class="block">
+	<div class="block_head">
+		<div class="bheadl"></div>
+		<div class="bheadr"></div>
+		
+		<h2>Visualizar Palestra</h2>
+		
+	</div>		<!-- .block_head ends -->
+	
+	<div class="block_content">
+
+		<p>
+		  <b>Nome:</b>
+		  <%= @lecture.name %>
+		</p>
+
+		<p>
+		  <b>Descrição:</b>
+		  <%= @lecture.description.html_safe %>
+		</p>
+
+		<p>
+		  <b>Data/Hora Inicial:</b>
+		  <%=I18n.l @lecture.initial_date %>
+		</p>
+
+    <p>
+		  <b>Data/Hora Final:</b>
+		  <%=I18n.l @lecture.end_date %>
+		</p>
+
+		<p>
+		  <b>Evento:</b>
+		  <%= @lecture.event.name %>
+		</p>
+		
+		<p>
+		  <b>Categoria:</b>
+		  <%= @lecture.category.name %>
+		</p>
+
+		<p>
+		  <b>Local:</b>
+		  <%= @lecture.place.name %>
+		</p>
+
+		<% unless @lecture.speakers.empty? %> 
+		  <p>
+		    <b>Palestrantes:</b><br>  
+		      <% @lecture.speakers.each do |speaker| %> 
+		        <%=h speaker.name %><br> 
+		      <% end %> 
+		  </p> 
+		<% end %>
+		
+		<p>
+      <a class="submit small" href="<%=event_lectures_url%>">Voltar</a>
+    </p>
+		
+		</div>		<!-- .block_content ends -->
+
+		<div class="bendl"></div>
+		<div class="bendr"></div>
+
+	</div>		<!-- .block ends -->

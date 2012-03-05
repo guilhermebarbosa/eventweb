@@ -1,0 +1,57 @@
+<div class="block">
+
+	<div class="block_head">
+		<div class="bheadl"></div>
+		<div class="bheadr"></div>
+		
+		<h2><%= @event.name %> - Palestras</h2>
+		
+		<ul>
+			<li><a href="<%=new_event_lecture_path(@event)%>">Nova palestra</a></li>
+		</ul>
+	</div>		<!-- .block_head ends -->
+	
+	<div class="block_content">
+	
+		<form action="" method="post">
+		
+			<table cellpadding="0" cellspacing="0" width="100%" class="sortable">
+			
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Categoria</th>
+						<th>Local</th>
+					  <th>Data Inicial</th>
+					  <th>Data Final</th>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<% @lectures.each do |lecture| %>
+					  <tr>
+					    <td><%= lecture.name %></td>
+						  <td><%= lecture.category.name %></td>
+						  <td><%= lecture.place.name %></td>
+					    <td><%= I18n.l lecture.initial_date %></td>
+					    <td><%= I18n.l lecture.end_date %></td>
+					    <td><%= link_to 'Visualizar' , [@event, lecture] %></td>
+					    <td><%= link_to 'Editar', edit_event_lecture_path(@event, lecture) %></td>
+						<td><%= link_to 'Excluir', [@event, lecture], :confirm => 'Tem certeza que deseja excluir?', :method => :delete %>
+</td>
+					  </tr>
+					<% end %>
+				</tbody>
+				
+			</table>
+						
+		</form>
+		
+	</div>		<!-- .block_content ends -->
+	
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+</div>		<!-- .block ends -->

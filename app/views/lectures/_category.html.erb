@@ -1,0 +1,12 @@
+<option value="">Selecione</option>
+<% if !@categories.blank? %>
+  <% @categories.each do |item| %>
+    <% if item.name == @selected
+      @opt_selected = "selected='selected'"
+    else
+      @opt_selected = ""
+    end %>
+    <option <%= @opt_selected %> value="<%= item.id %>"><%= item.name  %></option>
+  <% end %>
+<% end %>
+<option value="Nova">Nova</option>

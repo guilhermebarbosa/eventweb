@@ -1,0 +1,51 @@
+<div class="block">
+	<div class="block_head">
+		<div class="bheadl"></div>
+		<div class="bheadr"></div>
+		
+		<h2>Visualizar Palestrante</h2>
+		
+	</div>		<!-- .block_head ends -->
+	
+	<div class="block_content">
+
+		<p>
+		  <b>Nome:</b>
+		  <%= @speaker.name %>
+		</p>
+
+		<p>
+		  <b>Descrição:</b>
+		  <%= @speaker.description.html_safe %>
+		</p>
+
+		<p>
+		  <b>Email</b>
+		  <%= @speaker.email %>
+		</p>
+		
+		<p>
+		  <b>Twitter:</b>
+		  <%= @speaker.twitter %>
+		</p>
+		
+		<p>
+		  <b>Imagem:</b>
+		  <% if @speaker.image_file_name.blank? %>
+		    Nenhuma imagem encontrada
+		  <% else %>
+		    <br>
+		    <%= link_to image_tag(@speaker.image.url(:thumb)), @speaker.image.url(:original) %>
+		  <% end %> 
+		</p>
+		
+		<p>
+      <a class="submit small" href="<%=event_speakers_url%>">Voltar</a>
+    </p>
+
+	</div>		<!-- .block_content ends -->
+
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+
+</div>		<!-- .block ends -->

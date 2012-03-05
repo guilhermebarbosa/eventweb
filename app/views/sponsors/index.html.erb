@@ -1,0 +1,53 @@
+
+<div class="block">
+
+	<div class="block_head">
+		<div class="bheadl"></div>
+		<div class="bheadr"></div>
+		
+		<h2>Patrocinador</h2>
+		
+		<ul>
+			<li><a href="<%=new_event_sponsor_path(@event)%>">Novo patrocinador</a></li>
+		</ul>
+	</div>		<!-- .block_head ends -->
+	
+	<div class="block_content">
+	
+		<form action="" method="post">
+		
+			<table cellpadding="0" cellspacing="0" width="100%" class="sortable">
+			
+				<thead>
+					<tr>
+					    <th>Nome</th>
+					    <th>Patrocinador Tipo</th>
+					    <th>Site</th>
+					    <th></th>
+					    <th></th>
+					    <th></th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<% @sponsors.each do |sponsor| %>
+					  <tr>
+					    <td><%= sponsor.name %></td>
+					    <td><%= sponsor.sponsor_type.name %></td>
+					    <td><%= sponsor.site %></td>
+					    <td><%= link_to 'Visualizar', [@event, sponsor] %></td>
+					    <td><%= link_to 'Editar', edit_event_sponsor_path(@event, sponsor) %></td>
+					    <td><%= link_to 'Deletar', [@event,sponsor], :confirm => 'Tem certeza que deseja excluir?', :method => :delete %></td>
+					  </tr>
+					<% end %>
+				</tbody>
+				
+			</table>
+						
+		</form>
+		
+	</div>		<!-- .block_content ends -->
+	
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+</div>		<!-- .block ends -->

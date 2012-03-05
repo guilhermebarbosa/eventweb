@@ -1,0 +1,67 @@
+
+<div class="block">
+	<div class="block_head">
+		<div class="bheadl"></div>
+		<div class="bheadr"></div>
+
+		<h2><%= page %> Patrocinador</h2>
+
+	</div>		<!-- .block_head ends -->
+
+	<div class="block_content">
+
+		<p class="breadcrumb"><a href="<%= event_sponsors_url %>">Patrocinador</a> &raquo; <strong><%= page %></strong></p>
+
+		<%= form_for([@event, @sponsor], :html => { :multipart => true })  do |f| %>
+		  <% if @sponsor.errors.any? %>
+		    <div class="message errormsg">
+		      <p>Não foi possível salvar devido aos seguintes erros:</p>
+
+		      <% @sponsor.errors.full_messages.each do |msg| %>
+		        <p><%= msg %></p>
+		      <% end %>
+		    </div>
+		  <% end %>
+
+		    <p>
+			    <%= f.label :name, "Nome" %><br />
+		      <%= f.text_field :name, :class => "text small" %>
+		    </p>
+
+		    <p>
+		      <%= f.label :description, "Descrição" %><br />
+		      <%= f.text_area :description, :class => "wysiwyg"  %>
+		    </p>
+
+		    <p>
+			    <%= f.label :sponsor_type_id, "Patrocinador Tipo" %><br />
+			    <%= f.select :sponsor_type_id, @sponsor_types, :prompt => "Selecione", :class => "styled" %>
+			  </p>
+			  
+			  <p id="new_sponsor_type_text" style="display:none">
+  			  <%= text_field_tag(:sponsor_sponsor_type_text, "",:class => "text small") %>
+  			  <input type="button" id="sponsor_sponsor_type_submit" value="cadastrar" />
+  			  <input type="button" id="sponsor_sponsor_type_back" value="voltar" />
+  			</p>
+			
+			<p class="fileupload"> 
+			  <%= f.label :image, "Imagem" %><br>
+			  <%= f.file_field :image, :class =>"file" %> 
+			</p>
+			
+			<p>
+		    <%= f.label :site, "Site" %><br />
+	      <%= f.text_field :site, :class => "text small" %>
+	    </p>
+			
+		    <p>
+		      <%= f.submit page, :class => "submit small" %>
+		    </p>
+		<% end %>
+
+	</div>		<!-- .block_content ends -->
+
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+
+</div>		<!-- .block ends -->

@@ -1,0 +1,52 @@
+<div class="block">
+	<div class="block_head">
+		<div class="bheadl"></div>
+		<div class="bheadr"></div>
+		
+		<h2><%= page %> Galeria de fotos</h2>
+		
+	</div>		<!-- .block_head ends -->
+	
+	<div class="block_content">
+		
+		<p class="breadcrumb"><a href="<%= event_galleries_url %>">Galeria de fotos</a> &raquo; <strong><%= page %></strong></p>
+
+		<%= form_for([@event, @gallery], :html => { :multipart => true })  do |f| %>
+		  <% if @gallery.errors.any? %>
+		    <div class="message errormsg">
+		      <p>Não foi possível salvar devido aos seguintes erros:</p>
+		
+		      <% @gallery.errors.full_messages.each do |msg| %>
+		        <p><%= msg %></p>
+		      <% end %>
+		    </div>
+		  <% end %>
+		  
+		    <p>
+			  <%= f.label :name, "Nome" %><br />
+		      <%= f.text_field :name, :class => "text small" %>
+		    </p>
+		    
+		    <% f.fields_for :gallery_images do |images_fields| %>
+		      <% if images_fields.object.new_record? %>
+		      <p>
+		        <%= images_fields.file_field :image %>
+		      </p>
+		      <% else %>
+		        <%= link_to image_tag(images_fields.object.image.url(:thumb)), images_fields.object.image.url(:original) %>
+		        <%= images_fields.check_box :_destroy %> 
+		        <%= images_fields.label :excluir %><br>
+		      <% end %>
+		    <% end %>
+		    
+		    <p>
+		      <%= f.submit page, :class => "submit small" %>
+		    </p>
+		<% end %>
+		
+	</div>		<!-- .block_content ends -->
+	
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+		
+</div>		<!-- .block ends -->

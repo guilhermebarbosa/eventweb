@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>EventWeb</title>
+
+  <%= stylesheet_link_tag "style", "jquery.wysiwyg", "facebox", "visualize", "date_input" %>
+
+  <%= javascript_include_tag "jquery", "rails" %>
+
+  	<!--[if lt IE 8]><%= stylesheet_link_tag "ie", :media => "all" %><![endif]-->
+</head>
+<body>
+	
+	<div id="hld">
+	
+		<div class="wrapper">		<!-- wrapper begins -->
+			<%
+			if current_user
+			%>
+				<div id="header">
+					<div class="hdrl"></div>
+					<div class="hdrr"></div>
+				
+					<h1><a href="#">Event Web</a></h1>
+				
+					<ul id="nav">
+						<li><a href="<%=events_url%>">Evento</a></li>
+						<% if false %>
+						<li><a href="<%=event_types_url%>">Tipo de evento</a></li>
+						<% end %>
+						<% if @current_controller != "events" and @current_controller != "event_types" %>
+						  <li><a href="<%=event_lectures_url(params[:event_id])%>">Palestra</a></li>
+						  <li><a href="<%=event_speakers_url(params[:event_id])%>">Palestrante</a></li>
+    					<li><a href="<%=event_categories_url(params[:event_id])%>">Categoria</a></li>
+					    <li><a href="<%=event_places_url(params[:event_id])%>">Local</a></li>
+					    <li><a href="<%=event_galleries_url(params[:event_id])%>">Fotos</a></li>
+					    <li><a href="#">Patrocinador</a>
+  						  <ul>
+  						    <li><a href="<%=event_sponsors_url(params[:event_id])%>">Patrocinador</a>
+    						  <li><a href="<%=event_sponsor_types_url(params[:event_id])%>">Patrocinador Tipo</a></li>
+    						</ul>
+  						</li>
+  						<li><a href="#">Estabelecimento</a>
+  						  <ul>
+  						    <li><a href="<%=event_establishments_url(params[:event_id])%>">Estabelecimento</a>
+    						  <li><a href="<%=event_establishment_types_url(params[:event_id])%>">Estabelecimento Tipo</a></li>
+    						</ul>
+  						</li>
+					  <% end %>
+					</ul>
+					<p class="user">Ola, 
+						<%
+						if current_user
+						%>
+							<%=current_user.name%> | <%= link_to "Sair", logout_path %></p>
+						<%
+						else 
+							link_to "Cadastrar", new_user_session_path
+						end
+						%>
+					
+				</div>		<!-- #header ends -->		
+			<% end %>
+			
+			<%= yield %>
+				
+			<div id="footer">
+			
+				<p class="left"><a href="#">YourWebsite.com</a></p>
+				<p class="right">powered by <a href="http://themeforest.net/item/adminus-beautiful-admin-panel-interface/94668?ref=enstyled">Adminus</a> v1.4</p>
+				
+			</div>
+		
+		</div>						<!-- wrapper ends -->
+		
+	</div>		<!-- #hld ends -->
+
+	<!--[if IE]><%= javascript_include_tag "excanvas" %><![endif]-->
+	
+	<%= javascript_include_tag "application", "jquery.img.preload", "jquery.filestyle.mini", "jquery.wysiwyg", "jquery.date_input.pack", "facebox", "jquery.visualize", "jquery.visualize.tooltip", "jquery.select_skin", "jquery.tablesorter.min", "ajaxupload", "jquery.pngfix", "custom" %>
+	
+</body>
+</html>

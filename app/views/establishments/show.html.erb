@@ -1,0 +1,45 @@
+<div class="block">
+	<div class="block_head">
+		<div class="bheadl"></div>
+		<div class="bheadr"></div>
+		
+		<h2>Visualizar Estabelecimento</h2>
+		
+	</div>		<!-- .block_head ends -->
+	
+	<div class="block_content">
+  <p>
+    <b>Nome:</b>
+    <%= @establishment.name %>
+  </p>
+
+  <p>
+    <b>Tipo:</b>
+    <%= @establishment.establishment_type.name %>
+  </p>
+
+  <p>
+    <b>Descrição:</b>
+    <%= @establishment.description.html_safe %>
+  </p>
+
+  <p>
+    <b>Telefone:</b>
+    <%= @establishment.telephone %>
+  </p>
+
+  <p>
+    <b>Endereço:</b>
+    <%= @establishment.address %>
+  </p>
+  
+  <p>
+    <a class="submit small" href="<%=event_establishments_url%>">Voltar</a>
+  </p>
+  
+	</div>		<!-- .block_content ends -->
+
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+
+</div>		<!-- .block ends -->

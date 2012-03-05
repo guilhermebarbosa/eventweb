@@ -1,0 +1,39 @@
+<div class="block">
+	<div class="block_head">
+		<div class="bheadl"></div>
+		<div class="bheadr"></div>
+		
+		<h2>Visualizar Galeria de fotos</h2>
+		
+	</div>		<!-- .block_head ends -->
+	
+	<div class="block_content">
+
+		<p>
+		  <b>Nome:</b>
+		  <%= @gallery.name %>
+		</p>
+		
+		<p>
+		  <b>Imagens:</b>
+    <% if @gallery.gallery_images.empty? %>
+      Nenhuma imagem encontrada
+      <% else %>
+      <br>
+      <% @gallery.gallery_images.each do |image| %>
+        <%= link_to image_tag(image.url(:thumb)), image.url(:original) %>
+        <br><br>
+      <% end %>
+    <% end %>
+    </p>
+    
+    <p>
+      <a class="submit small" href="<%=event_galleries_url%>">Voltar</a>
+    </p>
+
+	</div>		<!-- .block_content ends -->
+
+	<div class="bendl"></div>
+	<div class="bendr"></div>
+
+</div>		<!-- .block ends -->
