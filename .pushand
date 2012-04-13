@@ -1,2 +1,2 @@
 #! /bin/bash
-phd $0 eventweb eventweb
+phd $0 eventweb eventweb.webbyapp.com
