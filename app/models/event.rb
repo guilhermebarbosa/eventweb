@@ -19,6 +19,8 @@ class Event < ActiveRecord::Base
   geocoded_by :address
   
   before_post_process :transliterate_file_name
+  after_validation :geocode, :if => :address_changed?
+  
   
   def transliterate_file_name
     extension = File.extname(map_file_name).gsub(/^\.+/, '')
