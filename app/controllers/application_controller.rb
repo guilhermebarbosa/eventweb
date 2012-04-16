@@ -28,7 +28,6 @@ class ApplicationController < ActionController::Base
           klass.send :remove_method, shenanigan
         end
       end
-
     end
 
   private
